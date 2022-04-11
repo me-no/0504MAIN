@@ -52,7 +52,7 @@ function draw() {
     }
     //タイトルと日付を挿入
     // Font
-    var font = loadFont("https://github.com/me-no/fonts/blob/main/misaki_gothic.ttf");
+    var font = loadFont("assets/misaki_gothic.ttf");
     textSize(12);
     textFont(font);
 
