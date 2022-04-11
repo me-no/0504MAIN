@@ -7,7 +7,7 @@ var v = 150;
 var _lineColr = 200, _lineColg = 200, _lineColb = 255;
 
 var colorList = [//name, code, tileNumber
- ["birth", "#438cb5", 72],
+ ["birth", "#438cb5", 72],//438cb5
  ["blueline" , "#002136", 36],
  ["bk" , "#000009", 2],
  ["white" , "#ffffff",  14],
@@ -46,9 +46,6 @@ function draw() {
         fill(squareList[d]);
         rect(i*16, j*16, 16, 16);
         squareList.splice(d, 1);
-        console.log(squareList);
-        console.log(i);
-        console.log(j);
     }
     //タイトルと日付を挿入
     // Font
