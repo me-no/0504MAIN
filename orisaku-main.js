@@ -1,4 +1,4 @@
-/*
+/* //normal
 var colorList = [//name, code, tileNumber
  ["birth", "#438cb5", 72],//438cb5
  ["blueline" , "#002136", 36],
@@ -14,6 +14,7 @@ var colorList = [//name, code, tileNumber
  ["pink" , "#c74d64", 3],
  ["brown" , "#342832", 5]
 ];*/
+/*  //bottom2
 var colorList = [//name, code, tileNumber
  ["birth", "#438cb5", 39],//438cb5
  ["blueline" , "#002136", 18],
@@ -22,6 +23,18 @@ var colorList = [//name, code, tileNumber
  ["skinb" , "#f3d48f", 16],
  ["skinn" , "#ffecae", 21],
 ];
+*/
+// middle
+var  colorList = [
+    ["birth", "#438cb5", 7],//438cb5
+    ["blueline" , "#002136", 4],
+    ["bk" , "#000009", 2],
+    ["white" , "#ffffff",  14],
+    ["orangen" , "#fbbc25", 3],
+    ["skinb" , "#f3d48f", 6],
+    ["skinn" , "#ffecae", 10],
+    ["brown" , "#342832", 2]   
+]
 
 var squareList = [];
 
@@ -34,8 +47,9 @@ function preload() {
 
     // Images
     //img = loadImage("assets/hackle-top.png");
-    img = loadImage("assets/hackle-bottom2.png");
-    //imgbtm = loadImage("assets/hackle-chin.png");
+    //img = loadImage("assets/hackle-bottom2.png");
+    img = loadImage("assets/hackle-head.png");
+    imgbtm = loadImage("assets/hackle-chin.png");
 }
 
 function setup () {
@@ -51,14 +65,14 @@ function setup () {
 
 function draw() {
     //読み込んだ画像の表示
-    //image(img, 0, 0);//top
-    image(img, 0, 112);//bottom
-    //image(imgbtm, 0, 160);
+    image(img, 0, 0);//top
+    //image(img, 0, 112);//bottom
+    image(imgbtm, 0, 160);
     
-    for (k = 0; k<112; k++) {//top => k=80, bottom => k=128, bottom2 => k=112, chin => k=48
+    for (k = 0; k<48; k++) {//top => k=80, bottom => k=128, bottom2 => k=112, chin => k=48
         i = k - int(k/16)*16;
-        //j = int(k/16) + 7;//top => +11, head => +7
-        j = int(k/16);
+        j = int(k/16) + 7;//top => +11, head => +7
+        //j = int(k/16);
         len = squareList.length;//squareList の長さ
         d = int(random(len));
         //d番目の色でドットを描く
@@ -66,6 +80,22 @@ function draw() {
         fill(squareList[d]);
         rect(i*16, j*16, 16, 16);
         squareList.splice(d, 1);
+
+        /* 先頭一行だけ青固定する場合はこちら
+        if (k < 16) {
+            noStroke();
+            fill(squareList[i]);
+            rect(i*16, j*16, 16,16);
+            squareList.splice(i, 1)
+        } else {
+            d = int(random(len));
+            //d番目の色でドットを描く
+            noStroke();
+            fill(squareList[d]);
+            rect(i*16, j*16, 16, 16);
+            squareList.splice(d, 1);
+        }
+        */
     }
     //タイトルと日付を挿入
     var dt    = new Date();
@@ -84,7 +114,7 @@ function draw() {
 	text("オリさく！#2", 20, 280);
 	text(str, 20, 300);
     textAlign(RIGHT);
-    fill(60,60,90);
+    fill(100,100, 130);
     textSize(12);
     text("#ドット絵再考察", 0, 325, width);
     //textSize(10);
