@@ -1,11 +1,4 @@
-var xstep=1.5, ustep = 1;
-var lastx=-999, lastu = -999;
-var lasty=-999, lastv = -999;
-var angle=0, r = 0;
-var y = 50;
-var v = 150;
-var _lineColr = 200, _lineColg = 200, _lineColb = 255;
-
+/*
 var colorList = [//name, code, tileNumber
  ["birth", "#438cb5", 72],//438cb5
  ["blueline" , "#002136", 36],
@@ -20,12 +13,33 @@ var colorList = [//name, code, tileNumber
  ["ciann" , "#008080", 2],
  ["pink" , "#c74d64", 3],
  ["brown" , "#342832", 5]
+];*/
+var colorList = [//name, code, tileNumber
+ ["birth", "#438cb5", 39],//438cb5
+ ["blueline" , "#002136", 18],
+ ["orangeb" , "#ee852e", 9],
+ ["orangen" , "#fbbc25", 9],
+ ["skinb" , "#f3d48f", 16],
+ ["skinn" , "#ffecae", 21],
 ];
 
 var squareList = [];
 
+let img;
+let font;
+
+function preload() {
+    // Font
+    font = loadFont("assets/misaki_gothic.ttf");
+
+    // Images
+    //img = loadImage("assets/hackle-top.png");
+    img = loadImage("assets/hackle-bottom2.png");
+    //imgbtm = loadImage("assets/hackle-chin.png");
+}
+
 function setup () {
-    createCanvas(256, 320);
+    createCanvas(256, 350);
     noFill();
     background(0,0,30);
     for (col of colorList) {
@@ -36,8 +50,14 @@ function setup () {
 }
 
 function draw() {
-    for (k = 0; k<255; k++) {
+    //読み込んだ画像の表示
+    //image(img, 0, 0);//top
+    image(img, 0, 112);//bottom
+    //image(imgbtm, 0, 160);
+    
+    for (k = 0; k<112; k++) {//top => k=80, bottom => k=128, bottom2 => k=112, chin => k=48
         i = k - int(k/16)*16;
+        //j = int(k/16) + 7;//top => +11, head => +7
         j = int(k/16);
         len = squareList.length;//squareList の長さ
         d = int(random(len));
@@ -48,11 +68,6 @@ function draw() {
         squareList.splice(d, 1);
     }
     //タイトルと日付を挿入
-    // Font
-    var font = loadFont("assets/misaki_gothic.ttf");
-    textSize(12);
-    textFont(font);
-
     var dObj    = new Date();
 	var hours   = dObj.getHours();
 	var minutes = dObj.getMinutes();
@@ -61,8 +76,16 @@ function draw() {
 	var str     = mkSign(hours, minutes, seconds);
 	fill(255, 255, 255);
 	noStroke();
-	text("オリさく！orisaku! #2", 40, 280);
-	text(str, 40, 300);
+    textSize(14);
+    textFont(font);
+	text("オリさく！#2", 20, 280);
+	text(str, 20, 300);
+    textAlign(RIGHT);
+    fill(60,60,90);
+    textSize(12);
+    text("#ドット絵再考察", 0, 325, width);
+    //textSize(10);
+    //text("@RyntaloL", 0, 340, width);
 
     noLoop();
 }
