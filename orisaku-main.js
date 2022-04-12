@@ -68,12 +68,15 @@ function draw() {
         squareList.splice(d, 1);
     }
     //タイトルと日付を挿入
-    var dObj    = new Date();
-	var hours   = dObj.getHours();
-	var minutes = dObj.getMinutes();
-	var seconds = dObj.getSeconds();
+    var dt    = new Date();
+    var year  = dt.getFullYear();
+    var month = dt.getMonth()+1;
+    var date  = dt.getDate();
+	var hours   = dt.getHours();
+	var minutes = dt.getMinutes();
+	var seconds = dt.getSeconds();
     // Format
-	var str     = mkSign(hours, minutes, seconds);
+	var str = year + "/" + month + "/" + date + " " + mkSign(hours, minutes, seconds);
 	fill(255, 255, 255);
 	noStroke();
     textSize(14);
@@ -94,6 +97,6 @@ function mkSign(hours, minutes, seconds) {
     if(hours < 10)   hours   = "0" + hours;
 	if(minutes < 10) minutes = "0" + minutes;
 	if(seconds < 10) seconds = "0" + seconds;
-	var str = "2022/05/04 " + hours + ":" + minutes + ":" + seconds;
+	var str = hours + ":" + minutes + ":" + seconds;
 	return str;
 }
